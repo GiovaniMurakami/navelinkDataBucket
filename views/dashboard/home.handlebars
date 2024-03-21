@@ -1,0 +1,20 @@
+<div class="dashboard">
+    <div class="title-container">
+        <h2>Dashboard</h2>
+    </div>
+    <h3>Listagem de dados</h3>
+    <ul>
+        {{#each data}}
+            <li>
+                <span class="label">{{this.description}}</span>
+                <span class="actions">
+                    <a href="/dashboard/visualize/{{this.id}}" class="btn">Visualizar/Editar</a>
+                    <form action="/dashboard/remove" method="POST">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Excluir" class="btn">
+                    </form>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+</div>

@@ -1,0 +1,22 @@
+<div class="create-container">
+    <h2>Armazene um Dado</h2>
+    <form action="/dashboard/create" method="POST">
+        <div class="form-control">
+            <label for="text">Nome de usuário:</label>
+            <input type="name" name="username" placeholder="Digite o nome de usuário" required>
+        </div>
+        <div class="form-control">
+            <label for="pasword">Senha:</label>
+            <input type="password" name="password" placeholder="Digite a sua senha" required>
+        </div>
+            <div class="form-control">
+            <label for="link">Link:</label>
+            <input type="text" name="link" placeholder="Digite o link" required>
+        </div>
+        <div class="form-control">
+            <label for="description">Descrição:</label>
+            <input type="text" name="description" placeholder="Descreva esse dado" required>
+        </div>
+        <input type="submit" value="Armazenar">
+    </form>
+</div>

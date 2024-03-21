@@ -1,0 +1,29 @@
+<div class="dashboard">
+    <div class="create-container">
+        <h2>Informações relacionadas ao dado</h2>
+    {{#if data}}
+        <form action="/dashboard/edit" method="POST">
+            <input type="hidden" name="id" value="{{data.id}}">
+            <div class="form-control">
+                <label for="text">Nome de usuário:</label>
+                <input type="text" name="username" value="{{data.username}}" placeholder="Digite o nome de usuário" required>
+            </div>
+            <div class="form-control">
+                <label for="password">Senha:</label>
+                <input type="text" name="password" value="{{data.password}}" placeholder="Digite a sua senha" required>
+            </div>
+            <div class="form-control">
+                <label for="link">Link:</label>
+                <input type="text" name="link" value="{{data.link}}" placeholder="Digite o link" required>
+            </div>
+            <div class="form-control">
+                <label for="description">Descrição:</label>
+                <input type="text" name="description" value="{{data.description}}" placeholder="Descreva esse dado" required>
+            </div>
+            <input type="submit" value="Alterar">
+        </form>
+        {{else}}
+            <p>Nenhum dado encontrado.</p>
+        {{/if}}
+    </div>
+</div>
