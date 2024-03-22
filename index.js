@@ -71,6 +71,10 @@ app.use("/dashboard", dashboardRoutes);
 
 app.get("/", checkAuth, DashboardController.home);
 
+app.use(function (req, res, next) {
+    res.render("404");
+});
+
 conn.sync()
     .then(() => {
         app.listen(process.env.PORT || 3000);

@@ -19,8 +19,12 @@ module.exports = class AuthController {
             return;
         }
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) {
-            req.flash("message", "Senha ou Email incorretos!");
+        if (
+            !passwordMatch ||
+            req.body.accessKey != process.env.ACCESS_KEY ||
+            req.body.accessKeySecret != process.env.SECRET_ACCESS_KEY
+        ) {
+            req.flash("message", "Acesso negado!");
             res.render("auth/login");
             return;
         }
@@ -64,10 +68,7 @@ module.exports = class AuthController {
         try {
             const createdUser = await User.create(user);
             req.flash("message", "Cadastro realizado com sucesso!");
-            req.session.userid = createdUser.id;
-            req.session.save(() => {
-                res.redirect("dashboard/home");
-            });
+            res.redirect("/login");
         } catch (e) {
             console.log(e);
         }
