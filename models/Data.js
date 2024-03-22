@@ -2,7 +2,9 @@ const { DataTypes } = require("sequelize");
 
 const db = require("../db/conn");
 
-const Data = db.define("data", {
+const User = require("./User");
+
+const Data = db.define("Data", {
     username: {
         type: DataTypes.STRING,
         require: true,
@@ -20,5 +22,8 @@ const Data = db.define("data", {
         require: true,
     },
 });
+
+Data.belongsTo(User);
+User.hasMany(Data);
 
 module.exports = Data;
