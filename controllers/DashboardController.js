@@ -1,9 +1,15 @@
-const { where } = require("sequelize");
 const Data = require("../models/Data");
+const User = require("../models/User");
 
 module.exports = class DashboardController {
     static async home(req, res) {
-        const data = (await Data.findAll()).map((r) => r.dataValues);
+        const userId = req.session.userid;
+        const user = await User.findOne({
+            where: { id: userId },
+            include: Data,
+            plain: true,
+        });
+        const data = user.Data.map((r) => r.dataValues);
         res.render("dashboard/home", { data: data });
     }
     static create(req, res) {
@@ -11,7 +17,7 @@ module.exports = class DashboardController {
     }
     static async createPost(req, res) {
         const { username, password, link, description } = req.body;
-
+        const userId = req.session.userid;
         /*Encriptação*/
 
         /*/ Encriptação */
@@ -20,8 +26,8 @@ module.exports = class DashboardController {
             password,
             link,
             description,
+            UserId: userId,
         };
-
         try {
             await Data.create(data);
             req.flash("message", "Dado armazenado com sucesso!");
