@@ -3,6 +3,7 @@ const { engine } = require("express-handlebars");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const flash = require("express-flash");
+require("dotenv").config();
 
 const app = express();
 
@@ -72,7 +73,7 @@ app.get("/", checkAuth, DashboardController.home);
 
 conn.sync()
     .then(() => {
-        app.listen(3000);
+        app.listen(process.env.PORT || 3000);
     })
     .catch((err) => {
         console.log(err);

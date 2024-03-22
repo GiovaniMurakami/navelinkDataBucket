@@ -1,9 +1,14 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("navelinkDataBucket", "root", "Murakam1@", {
-    host: "localhost",
-    dialect: "mysql",
-});
+const sequelize = new Sequelize(
+    "navelinkDataBucket",
+    `${process.env.DB_USER}`,
+    `${process.env.DB_SECRET}`,
+    {
+        host: "localhost",
+        dialect: "mysql",
+    }
+);
 
 try {
     sequelize.authenticate();
