@@ -1,6 +1,6 @@
 <div class="dashboard">
     <div class="create-container">
-        <h2>Informações relacionadas ao dado</h2>
+        <h2>Informações Relacionadas ao Dado</h2>
     {{#if data}}
         <form action="/dashboard/edit" method="POST">
             <input type="hidden" name="id" value="{{data.id}}">
@@ -20,7 +20,10 @@
                 <label for="description">Descrição:</label>
                 <input type="text" name="description" value="{{data.description}}" placeholder="Descreva esse dado" required>
             </div>
-            <input type="submit" value="Alterar">
+            <div class="commands">
+                <input type="submit" value="Alterar">
+                <a href="/dashboard/home" class="btn">Voltar</a>
+            </div>
         </form>
         {{else}}
             <p>Nenhum dado encontrado.</p>

@@ -17,6 +17,9 @@
     color: #fff;
     border-bottom: 1px solid #6610f2;
 }
+.navbar a {
+    text-decoration: none;
+}
     
 .navbar ul {
     display: flex;
@@ -53,7 +56,12 @@
 }
 
 .auth-container p {
-    margin-bottom: .3em;
+    margin-bottom: 1em;
+}
+
+.commands {
+    display: flex;
+    justify-content: space-between;
 }
     
 .create-container h2, .auth-container h2 {
