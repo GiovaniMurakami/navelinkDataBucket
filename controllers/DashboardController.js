@@ -51,8 +51,19 @@ module.exports = class DashboardController {
     static async visualize(req, res) {
         const id = req.params.id;
         try {
-            const data = (await Data.findOne({ where: { id: id } })).dataValues;
-            res.render("dashboard/visualize", { data: data });
+            const data = await Data.findOne({ where: { id: id } });
+            if (!data) {
+                req.flash("message", "Dado não encontrado");
+                DashboardController.home(req, res);
+                return;
+            }
+            if (data.UserId != req.session.userid) {
+                req.flash("message", "Erro, escolha um dado que te pertence");
+                DashboardController.home(req, res);
+                return;
+            }
+            console.log(data.dataValue);
+            res.render("dashboard/visualize", { data: data.dataValues });
         } catch (e) {
             console.log(e);
         }

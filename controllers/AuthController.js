@@ -19,11 +19,7 @@ module.exports = class AuthController {
             return;
         }
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (
-            !passwordMatch ||
-            req.body.accessKey != process.env.ACCESS_KEY ||
-            req.body.accessKeySecret != process.env.SECRET_ACCESS_KEY
-        ) {
+        if (!passwordMatch) {
             req.flash("message", "Acesso negado!");
             res.render("auth/login");
             return;
