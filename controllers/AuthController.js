@@ -64,7 +64,10 @@ module.exports = class AuthController {
         try {
             const createdUser = await User.create(user);
             req.flash("message", "Cadastro realizado com sucesso!");
-            res.redirect("/login");
+            req.session.userid = createdUser.id;
+            req.session.save(() => {
+                res.redirect("/dashboard/home");
+            });
         } catch (e) {
             console.log(e);
         }
